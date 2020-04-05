@@ -1,9 +1,13 @@
 ﻿using EducatioNow.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EducatioNow.Data.Interfaces
 {
     public interface IAlunoRepository
     {
-        Aluno GetAluno(int id);
+        Task<IEnumerable<Aluno>> GetAlunos();
+
+        Task Create(Aluno aluno);
     }
 }
