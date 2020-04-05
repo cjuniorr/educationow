@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using EducatioNow.Data.Interfaces;
 using EducatioNow.Models;
 using EducatioNow.Utils;
 using Microsoft.Extensions.Options;
@@ -6,7 +7,7 @@ using System;
 
 namespace EducatioNow.Data
 {
-    public class AlunoRepository : Repository
+    public class AlunoRepository : Repository, IAlunoRepository
     {
         public AlunoRepository(IOptions<ConnectionStringOption> connectionString) : base(connectionString) { }
 
@@ -16,7 +17,9 @@ namespace EducatioNow.Data
             {
                 using (var connection = CreateOracleConnection())
                 {
-                    return connection.QueryFirst<Aluno>("");
+                    var aluno = connection.QueryFirstOrDefault<Aluno>(@"SELECT ID, TURMAID, NOME, ENDERECOID, TELEFONEID, EMAIL, DTNASCIMENTO
+                                                             FROM RM83652.ALUNO; ");
+                    return aluno;
                 }
             }
             catch (Exception ex)

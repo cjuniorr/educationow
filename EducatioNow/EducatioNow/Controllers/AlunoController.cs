@@ -1,33 +1,37 @@
-﻿using System;
+﻿using EducatioNow.Data;
+using EducatioNow.Data.Interfaces;
+using EducatioNow.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using EducatioNow.Data;
-using EducatioNow.Models;
 
 namespace EducatioNow.Controllers
 {
     public class AlunoController : Controller
     {
         private readonly EducatioNowContext _context;
+        private IAlunoRepository _alunoRepository;
 
-        public AlunoController(EducatioNowContext context)
+        public AlunoController(EducatioNowContext context, IAlunoRepository alunoRepository)
         {
             _context = context;
+            _alunoRepository = alunoRepository;
         }
 
         // GET: Aluno
         public async Task<IActionResult> Index()
         {
             var listaAlunos = new List<Aluno> {
-                new Aluno { Id = 1, Nome = "Fulano de Tal", DtNascimento = DateTime.Now, Email = "qwert@abc.com.br", Senha = "qwert", Telefone = "1234456789" },
-                new Aluno { Id = 2, Nome = "Sincrano de Tal", DtNascimento = DateTime.Now, Email = "abc@abc.com.br", Senha = "asdf", Telefone = "777777777" },
-                new Aluno { Id = 3, Nome = "Beltrano de Tal", DtNascimento = DateTime.Now, Email = "asdf@abc.com.br", Senha = "abzxcvc123", Telefone = "88888888" },
-                new Aluno { Id = 4, Nome = "Deltrano de Tal", DtNascimento = DateTime.Now, Email = "yuio@abc.com.br", Senha = "abc1bnm323", Telefone = "9999999999" }
+                new Aluno { Id = 1, Nome = "Fulano de Tal", DtNascimento = DateTime.Now, Email = "qwert@abc.com.br", TelefoneId = "1234456789" },
+                new Aluno { Id = 2, Nome = "Sincrano de Tal", DtNascimento = DateTime.Now, Email = "abc@abc.com.br", TelefoneId = "777777777" },
+                new Aluno { Id = 3, Nome = "Beltrano de Tal", DtNascimento = DateTime.Now, Email = "asdf@abc.com.br", TelefoneId = "88888888" },
+                new Aluno { Id = 4, Nome = "Deltrano de Tal", DtNascimento = DateTime.Now, Email = "yuio@abc.com.br", TelefoneId = "9999999999" }
             };
+
+            var getAluno = _alunoRepository.GetAluno(1);
 
             return View(listaAlunos);
             //var teste = await _context.Aluno.ToListAsync();

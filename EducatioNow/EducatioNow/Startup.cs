@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using EducatioNow.Data;
 using EducatioNow.Utils;
+using EducatioNow.Data.Interfaces;
 
 namespace EducatioNow
 {
@@ -35,6 +36,8 @@ namespace EducatioNow
             {
                 connectionStringOptions.OracleConnection = Configuration.GetConnectionString("OracleConnection");
             });
+
+            services.AddTransient<IAlunoRepository, AlunoRepository>();
 
         }
 
