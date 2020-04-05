@@ -13,6 +13,28 @@ namespace EducatioNow.Data
     {
         public AlunoRepository(IOptions<ConnectionStringOption> connectionString) : base(connectionString) { }
 
+        public async Task AddNaTurma(int alunoId, string turmaId)
+        {
+            try
+            {
+                var parametro = new
+                {
+                    turmaId = turmaId,
+                    alunoId = alunoId
+                };
+
+                //using (var connection = CreateOracleConnection())
+                //{
+                //    await connection.QueryAsync(@"INSERT INTO RM83652.ALUNO (TURMAID) VALUES(:turmaId) WHERE ID = :alunoId");
+                //}
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro durante a inserção do aluno na turma.", ex);
+            }
+        }
+
         public async Task Create(Aluno aluno)
         {
             try

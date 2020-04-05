@@ -19,6 +19,12 @@ namespace EducatioNow.Controllers
             _alunoRepository = alunoRepository;
         }
 
+        public async Task<IActionResult> AddTurma(int id, string turmaId)
+        {
+            await _alunoRepository.AddNaTurma(id, turmaId);
+            return Ok();
+        }
+
         // GET: Aluno
         public async Task<IActionResult> Index()
         {

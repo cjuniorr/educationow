@@ -9,5 +9,7 @@ namespace EducatioNow.Data.Interfaces
         Task<IEnumerable<Aluno>> GetAlunos();
 
         Task Create(Aluno aluno);
+
+        Task AddNaTurma(int alunoId, string turmaId);
     }
 }

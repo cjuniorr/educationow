@@ -59,8 +59,7 @@ namespace EducatioNow.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(turma);
-                await _context.SaveChangesAsync();
+                await _turmaRepository.Create(turma);
                 return RedirectToAction(nameof(Index));
             }
             return View(turma);
