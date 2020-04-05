@@ -70,8 +70,10 @@ namespace EducatioNow.Data
             {
                 using (var connection = CreateOracleConnection())
                 {
-                    var aluno = await connection.QueryAsync<Aluno>(@"SELECT ID, TURMAID, NOME, ENDERECOID, TELEFONEID, EMAIL, DTNASCIMENTO FROM RM83652.ALUNO");
-                    return aluno;
+                    //var alunos = await connection.QueryAsync<Aluno>(@"SELECT ID, TURMAID, NOME, ENDERECOID, TELEFONEID, EMAIL, DTNASCIMENTO FROM RM83652.ALUNO");
+
+                    var alunos = GetMock();
+                    return alunos;
                 }
             }
             catch (Exception ex)
@@ -79,6 +81,18 @@ namespace EducatioNow.Data
 
                 throw new Exception("Erro durante a busca do aluno.", ex);
             }
+        }
+
+        private IEnumerable<Aluno> GetMock()
+        {
+            var alunos = new List<Aluno> {
+                new Aluno { Id = 1, Nome = "Fulano", DtNascimento = DateTime.Now, Email = "bb@aa.com", EnderecoId = "Rua eqwewq", TelefoneId = "11111111111" },
+                new Aluno { Id = 1, Nome = "Beltrano", DtNascimento = DateTime.Now, Email = "cc@aa.com", EnderecoId = "Rua eqweqw", TelefoneId = "222222222" },
+                new Aluno { Id = 1, Nome = "Sicrano", DtNascimento = DateTime.Now, Email = "aa@aa.com", EnderecoId = "Rua seieqwqla", TelefoneId = "33333" },
+                new Aluno { Id = 1, Nome = "Deltrano", DtNascimento = DateTime.Now, Email = "www@aa.com", EnderecoId = "Rua seila", TelefoneId = "77777" },
+            };
+
+            return alunos;
         }
 
     }

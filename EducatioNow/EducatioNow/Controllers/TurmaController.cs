@@ -3,6 +3,7 @@ using EducatioNow.Data.Interfaces;
 using EducatioNow.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,12 +12,26 @@ namespace EducatioNow.Controllers
     public class TurmaController : Controller
     {
         private ITurmaRepository _turmaRepository;
+        private IAlunoRepository _alunoRepository;
         private readonly EducatioNowContext _context;
 
-        public TurmaController(EducatioNowContext context, ITurmaRepository turmaRepository)
+        public TurmaController(EducatioNowContext context, ITurmaRepository turmaRepository, IAlunoRepository alunoRepository)
         {
             _context = context;
             _turmaRepository = turmaRepository;
+            _alunoRepository = alunoRepository;
+        }
+
+        public async Task<IActionResult> AddAluno(string turmaId)
+        {
+            var alunos = await _alunoRepository.GetAlunos();
+
+            var models = new {
+                alunos = alunos,
+                turmaId = turmaId
+            };
+
+            return View("AddAluno", models);
         }
 
         // GET: Turma

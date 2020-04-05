@@ -14,6 +14,11 @@ namespace EducatioNow.Data
     {
         public TurmaRepository(IOptions<ConnectionStringOption> connectionString): base(connectionString) { }
 
+        public Task AddAluno(string alunoId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task Create(Turma turma)
         {
             try
@@ -21,13 +26,13 @@ namespace EducatioNow.Data
                 using (var connection = CreateOracleConnection())
                 {
                     var parametros = new {
-                        Id = Guid.NewGuid(),
-                        Serie = turma.Serie,
-                        Ano = turma.Ano
+                        id = Guid.NewGuid().ToString(),
+                        serie = turma.Serie,
+                        ano = turma.Ano
                     };
 
-                    await connection.QueryAsync(@"INSERT INTO RM83652.ALUNO (ID, SERIE, ANO)
-                                                VALUES(:Id, :Serie, :Ano)", parametros);
+                    await connection.QueryAsync(@"INSERT INTO RM83652.TURMA (ID, SERIE, ANO)
+                                                VALUES(:id, :serie, :ano)", parametros);
                 }
             }
             catch (Exception ex)
@@ -43,10 +48,8 @@ namespace EducatioNow.Data
             {
                 using (var connection = CreateOracleConnection())
                 {
-                    //var turmas = await connection.QueryAsync<Turma>(@"SELECT ID FROM RM83652.ALUNO ORDER BY ID DESC");
-
+                    //var turmas = await connection.QueryAsync<Turma>(@"SELECT ID, SERIE, ANO FROM RM83652.TURMA");
                     var turmas = GetMock();
-
                     return turmas;
                 }
             }
