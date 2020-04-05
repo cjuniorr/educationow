@@ -22,7 +22,16 @@ namespace EducatioNow.Controllers
         // GET: Aluno
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Aluno.ToListAsync());
+            var listaAlunos = new List<Aluno> {
+                new Aluno { Id = 1, Nome = "Fulano de Tal", DtNascimento = DateTime.Now, Email = "qwert@abc.com.br", Senha = "qwert", Telefone = "1234456789" },
+                new Aluno { Id = 2, Nome = "Sincrano de Tal", DtNascimento = DateTime.Now, Email = "abc@abc.com.br", Senha = "asdf", Telefone = "777777777" },
+                new Aluno { Id = 3, Nome = "Beltrano de Tal", DtNascimento = DateTime.Now, Email = "asdf@abc.com.br", Senha = "abzxcvc123", Telefone = "88888888" },
+                new Aluno { Id = 4, Nome = "Deltrano de Tal", DtNascimento = DateTime.Now, Email = "yuio@abc.com.br", Senha = "abc1bnm323", Telefone = "9999999999" }
+            };
+
+            return View(listaAlunos);
+            //var teste = await _context.Aluno.ToListAsync();
+            //return View(teste);
         }
 
         // GET: Aluno/Details/5
