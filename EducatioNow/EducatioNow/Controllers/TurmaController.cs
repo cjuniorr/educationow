@@ -1,28 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EducatioNow.Data;
+using EducatioNow.Data.Interfaces;
+using EducatioNow.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using EducatioNow.Data;
-using EducatioNow.Models;
 
 namespace EducatioNow.Controllers
 {
     public class TurmaController : Controller
     {
+        private ITurmaRepository _turmaRepository;
         private readonly EducatioNowContext _context;
 
-        public TurmaController(EducatioNowContext context)
+        public TurmaController(EducatioNowContext context, ITurmaRepository turmaRepository)
         {
             _context = context;
+            _turmaRepository = turmaRepository;
         }
 
         // GET: Turma
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Turma.ToListAsync());
+            var turmas = await _turmaRepository.Get();
+            return View(turmas);
         }
 
         // GET: Turma/Details/5
