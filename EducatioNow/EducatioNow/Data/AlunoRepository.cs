@@ -17,8 +17,7 @@ namespace EducatioNow.Data
             {
                 using (var connection = CreateOracleConnection())
                 {
-                    var aluno = connection.QueryFirstOrDefault<Aluno>(@"SELECT ID, TURMAID, NOME, ENDERECOID, TELEFONEID, EMAIL, DTNASCIMENTO
-                                                             FROM RM83652.ALUNO; ");
+                    var aluno = connection.QueryFirstOrDefault<Aluno>(@"SELECT ID, TURMAID, NOME, ENDERECOID, TELEFONEID, EMAIL, DTNASCIMENTO FROM RM83652.ALUNO");
                     return aluno;
                 }
             }

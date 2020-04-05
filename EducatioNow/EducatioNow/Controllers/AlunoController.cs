@@ -25,10 +25,10 @@ namespace EducatioNow.Controllers
         public async Task<IActionResult> Index()
         {
             var listaAlunos = new List<Aluno> {
-                new Aluno { Id = 1, Nome = "Fulano de Tal", DtNascimento = DateTime.Now, Email = "qwert@abc.com.br", TelefoneId = "1234456789" },
-                new Aluno { Id = 2, Nome = "Sincrano de Tal", DtNascimento = DateTime.Now, Email = "abc@abc.com.br", TelefoneId = "777777777" },
-                new Aluno { Id = 3, Nome = "Beltrano de Tal", DtNascimento = DateTime.Now, Email = "asdf@abc.com.br", TelefoneId = "88888888" },
-                new Aluno { Id = 4, Nome = "Deltrano de Tal", DtNascimento = DateTime.Now, Email = "yuio@abc.com.br", TelefoneId = "9999999999" }
+                //new Aluno { Id = 1, Nome = "Fulano de Tal", DtNascimento = DateTime.Now, Email = "qwert@abc.com.br", TelefoneId = "1234456789" },
+                //new Aluno { Id = 2, Nome = "Sincrano de Tal", DtNascimento = DateTime.Now, Email = "abc@abc.com.br", TelefoneId = "777777777" },
+                //new Aluno { Id = 3, Nome = "Beltrano de Tal", DtNascimento = DateTime.Now, Email = "asdf@abc.com.br", TelefoneId = "88888888" },
+                //new Aluno { Id = 4, Nome = "Deltrano de Tal", DtNascimento = DateTime.Now, Email = "yuio@abc.com.br", TelefoneId = "9999999999" }
             };
 
             var getAluno = _alunoRepository.GetAluno(1);
