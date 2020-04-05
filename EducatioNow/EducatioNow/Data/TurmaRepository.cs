@@ -14,9 +14,27 @@ namespace EducatioNow.Data
     {
         public TurmaRepository(IOptions<ConnectionStringOption> connectionString): base(connectionString) { }
 
-        public Task Create(Turma turma)
+        public async Task Create(Turma turma)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var connection = CreateOracleConnection())
+                {
+                    var parametros = new {
+                        Id = Guid.NewGuid(),
+                        Serie = turma.Serie,
+                        Ano = turma.Ano
+                    };
+
+                    await connection.QueryAsync(@"INSERT INTO RM83652.ALUNO (ID, SERIE, ANO)
+                                                VALUES(:Id, :Serie, :Ano)", parametros);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro durante a criação da turma", ex);
+            }
         }
 
         public async Task<IEnumerable<Turma>> Get()
@@ -35,7 +53,7 @@ namespace EducatioNow.Data
             catch (Exception ex)
             {
 
-                throw new Exception("Erro durante a criação da turma", ex);
+                throw new Exception("Erro durante a consulta de turmas.", ex);
             }
         }
 
