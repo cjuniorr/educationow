@@ -4,6 +4,8 @@ using EducatioNow.Models;
 using EducatioNow.Utils;
 using Microsoft.Extensions.Options;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EducatioNow.Data
 {
@@ -11,13 +13,13 @@ namespace EducatioNow.Data
     {
         public AlunoRepository(IOptions<ConnectionStringOption> connectionString) : base(connectionString) { }
 
-        public Aluno GetAluno(int id)
+        public Task<IEnumerable<Aluno>> GetAlunos()
         {
             try
             {
                 using (var connection = CreateOracleConnection())
                 {
-                    var aluno = connection.QueryFirstOrDefault<Aluno>(@"SELECT ID, TURMAID, NOME, ENDERECOID, TELEFONEID, EMAIL, DTNASCIMENTO FROM RM83652.ALUNO");
+                    var aluno = connection.QueryAsync<Aluno>(@"SELECT ID, TURMAID, NOME, ENDERECOID, TELEFONEID, EMAIL, DTNASCIMENTO FROM RM83652.ALUNO");
                     return aluno;
                 }
             }
