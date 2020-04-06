@@ -1,9 +1,8 @@
 ﻿@*@model IEnumerable<EducatioNow.Models.Turma>*@
-@model dynamic
 @{
     ViewData["Title"] = "AddAluno";
-    var alunos = (IEnumerable<Aluno>)Model.alunos;
-    var turmaId = (string)Model.turmaId;
+    var alunos = (IEnumerable<Aluno>)ViewBag.Alunos;
+    var turmaId = (string)ViewBag.TurmaId;
 
 }
 

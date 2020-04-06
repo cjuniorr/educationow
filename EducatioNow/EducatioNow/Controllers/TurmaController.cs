@@ -26,12 +26,10 @@ namespace EducatioNow.Controllers
         {
             var alunos = await _alunoRepository.GetAlunos();
 
-            var models = new {
-                alunos = alunos,
-                turmaId = turmaId
-            };
+            ViewBag.TurmaId = turmaId;
+            ViewBag.Alunos = alunos;
 
-            return View("AddAluno", models);
+            return View("AddAluno");
         }
 
         // GET: Turma
