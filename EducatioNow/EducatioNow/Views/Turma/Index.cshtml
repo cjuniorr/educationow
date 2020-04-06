@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EducatioNow.Models.Aluno>
+﻿@model IEnumerable<EducatioNow.Models.Turma>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,16 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                @Html.DisplayNameFor(model => model.Serie)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DtNascimento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TelefoneId)
+                @Html.DisplayNameFor(model => model.Ano)
             </th>
             <th></th>
         </tr>
@@ -31,19 +25,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Nome)
+                @Html.DisplayFor(modelItem => item.Serie)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
+                @Html.DisplayFor(modelItem => item.Ano)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DtNascimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TelefoneId)
-            </td>
-            <td>
-                
+                <a asp-action="AddAluno" asp-route-turmaId="@item.Id">Adicionar aluno</a> |
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>

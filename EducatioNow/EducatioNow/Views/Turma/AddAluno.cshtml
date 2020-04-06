@@ -1,0 +1,64 @@
+﻿@*@model IEnumerable<EducatioNow.Models.Turma>*@
+@{
+    ViewData["Title"] = "AddAluno";
+    var alunos = (IEnumerable<Aluno>)ViewBag.Alunos;
+    var turmaId = (string)ViewBag.TurmaId;
+
+}
+
+<h1>Adiciona Aluno</h1>
+
+<p>
+    <a asp-action="AddAluno">Adiciona Aluno</a>
+</p>
+<p>TurmaId: @turmaId</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var aluno in alunos)
+        {
+            <tr>
+                <td>@aluno.Nome</td>
+                <td>@aluno.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Serie)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ano)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Serie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ano)
+                    </td>
+                    <td>
+                        <a asp-action="AddAluno" asp-route-id="@item.Id">Adicionar aluno</a> |
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@

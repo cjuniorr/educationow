@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EducatioNow.Models
 {
     public class Aluno
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         public string TurmaId { get; set; }
 

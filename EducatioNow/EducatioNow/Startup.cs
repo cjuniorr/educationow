@@ -38,6 +38,7 @@ namespace EducatioNow
             });
 
             services.AddTransient<IAlunoRepository, AlunoRepository>();
+            services.AddTransient<ITurmaRepository, TurmaRepository>();
 
         }
 
@@ -65,7 +66,7 @@ namespace EducatioNow
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Turma}/{action=Index}/{id?}");
             });
         }
     }
