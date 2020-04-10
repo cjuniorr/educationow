@@ -17,5 +17,7 @@ namespace EducatioNow.Data
         public DbSet<EducatioNow.Models.Aluno> Aluno { get; set; }
 
         public DbSet<EducatioNow.Models.Turma> Turma { get; set; }
+
+        public DbSet<EducatioNow.Models.Professor> Professor { get; set; }
     }
 }
