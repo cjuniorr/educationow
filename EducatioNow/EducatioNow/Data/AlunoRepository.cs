@@ -25,7 +25,7 @@ namespace EducatioNow.Data
 
                 //using (var connection = CreateOracleConnection())
                 //{
-                //    await connection.QueryAsync(@"INSERT INTO RM83652.ALUNO (TURMAID) VALUES(:turmaId) WHERE ID = :alunoId");
+                //    await connection.QueryAsync(@"INSERT INTO ALUNO (TURMAID) VALUES(:turmaId) WHERE ID = :alunoId");
                 //}
             }
             catch (Exception ex)
@@ -41,7 +41,7 @@ namespace EducatioNow.Data
             {
                 using (var connection = CreateOracleConnection())
                 {
-                    var idUltimoAluno = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT ID FROM RM83652.ALUNO ORDER BY ID DESC");
+                    var idUltimoAluno = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT ID FROM ALUNO ORDER BY ID DESC");
                     var parametros = new
                     {
                         Id = idUltimoAluno + 1,
@@ -70,7 +70,7 @@ namespace EducatioNow.Data
             {
                 using (var connection = CreateOracleConnection())
                 {
-                    //var alunos = await connection.QueryAsync<Aluno>(@"SELECT ID, TURMAID, NOME, ENDERECOID, TELEFONEID, EMAIL, DTNASCIMENTO FROM RM83652.ALUNO");
+                    //var alunos = await connection.QueryAsync<Aluno>(@"SELECT ID, TURMAID, NOME, ENDERECOID, TELEFONEID, EMAIL, DTNASCIMENTO FROM ALUNO");
 
                     var alunos = GetMock();
                     return alunos;

@@ -31,7 +31,7 @@ namespace EducatioNow.Data
                         ano = turma.Ano
                     };
 
-                    await connection.QueryAsync(@"INSERT INTO RM83652.TURMA (ID, SERIE, ANO)
+                    await connection.QueryAsync(@"INSERT INTO TURMA (ID, SERIE, ANO)
                                                 VALUES(:id, :serie, :ano)", parametros);
                 }
             }
@@ -48,7 +48,7 @@ namespace EducatioNow.Data
             {
                 using (var connection = CreateOracleConnection())
                 {
-                    //var turmas = await connection.QueryAsync<Turma>(@"SELECT ID, SERIE, ANO FROM RM83652.TURMA");
+                    //var turmas = await connection.QueryAsync<Turma>(@"SELECT ID, SERIE, ANO FROM TURMA");
                     var turmas = GetMock();
                     return turmas;
                 }
